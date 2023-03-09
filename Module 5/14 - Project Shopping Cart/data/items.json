@@ -1,0 +1,50 @@
+[
+  {
+    "id" : "1",
+    "img" : "img/1.jpg",
+    "name" : "Desktop Power 1",
+    "price" : "434.00"
+  },
+  {
+    "id" : "2",
+    "img" : "img/2.jpg",
+    "name" : "Laptop X",
+    "price" : "1299.34"
+  },
+  {
+    "id" : "3",
+    "img" : "img/3.jpg",
+    "name" : "Desktop G",
+    "price" : "499.00"
+  },
+  {
+    "id" : "4",
+    "img" : "img/1.jpg",
+    "name" : "Desktop Power 1",
+    "price" : "434.00"
+  },
+  {
+    "id" : "5",
+    "img" : "img/2.jpg",
+    "name" : "Laptop X",
+    "price" : "1299.34"
+  },
+  {
+    "id" : "6",
+    "img" : "img/3.jpg",
+    "name" : "Desktop G",
+    "price" : "499.00"
+  },
+  {
+    "id" : "7",
+    "img" : "img/1.jpg",
+    "name" : "Desktop Power 1",
+    "price" : "434.00"
+  },
+  {
+    "id" : "8",
+    "img" : "img/2.jpg",
+    "name" : "Laptop X",
+    "price" : "1299.34"
+  }
+]
