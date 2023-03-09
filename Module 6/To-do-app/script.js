@@ -1,25 +1,21 @@
-
-
-
-
 var ENTER_KEY = 13;
 
-window.onload = function() {
+window.onload = function () {
   var todos = [];
 
   init();
 
   function init() {
     todos = JSON.parse(localStorage.getItem('todos')) || [];
+
     bindEvents();
     renderItems();
   }
 
   function bindEvents() {
-
-    $('#to-do-input').keypress(function(event) {
+    $('#to-do-input').keypress(function (event) {
       var task = $(this).val();
-      if(event.keyCode === ENTER_KEY) {
+      if (event.keyCode === ENTER_KEY) {
         createTodo(task);
         syncLocalStorage();
         renderItems();
@@ -27,10 +23,10 @@ window.onload = function() {
       }
     })
 
-    $('#todo-tasks-list').on('click', 'li input', function(event) {
+    $('#todo-tasks-list').on('click', 'li input', function (event) {
       var itemId = $(this).data('id');
 
-      if($(this).is(':checked')){
+      if ($(this).is(':checked')) {
         //update the done parameter as true
         updateItem(itemId, true);
       } else {
@@ -42,7 +38,7 @@ window.onload = function() {
       renderItems();
     });
 
-    $('#todo-tasks-list').on('click', 'li button', function(event) {
+    $('#todo-tasks-list').on('click', 'li button', function (event) {
       var itemId = $(this).data('id');
       removeItem(itemId);
       syncLocalStorage();
@@ -51,7 +47,11 @@ window.onload = function() {
   }
 
   function createTodo(task) {
-    todos.push({id: todos.length, task: task, done: false});
+    todos.push({
+      id: todos.length,
+      task: task,
+      done: false
+    });
   }
 
   function syncLocalStorage() {
@@ -61,7 +61,7 @@ window.onload = function() {
   function renderItems() {
     $('#todo-tasks-list').html('');
 
-    for(var i = 0; i < todos.length; i++) {
+    for (var i = 0; i < todos.length; i++) {
       var item = createItemTemplate(todos[i]);
       $('#todo-tasks-list').append(item);
     }
@@ -69,19 +69,20 @@ window.onload = function() {
 
   function createItemTemplate(todo) {
     var item = '<li class="todo-item ' + (todo.done ? 'done' : '') + '">';
-        item += '<label class="control--checkbox">';
-        item += todo.task;
-        item += '<input data-id="' + todo.id + '" type="checkbox" ' + (todo.done ? 'checked' : '') + ' />';
-        item += '<div class="checked-icon"></div>';
-        item += '</label>';
-        item += '<button data-id="' + todo.id + '" class="remove-todo-btn"><i class="fa fa-trash"></i></button>';
-        item += '</li>';
+    item += '<label class="control--checkbox">';
+    item += todo.task;
+    item += '<input data-id="' + todo.id + '" type="checkbox" ' + (todo.done ? 'checked' : '') + ' />';
+    item += '<div class="checked-icon"></div>';
+    item += '</label>';
+    item += '<button data-id="' + todo.id + '" class="remove-todo-btn"><i class="fa fa-trash"></i></button>';
+    item += '</li>';
+
     return item;
   }
 
   function updateItem(id, isDone) {
-    for(var i = 0; i < todos.length; i++){
-      if(todos[i].id === id){
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) {
         todos[i].done = isDone;
         break;
       }
@@ -89,14 +90,11 @@ window.onload = function() {
   }
 
   function removeItem(id) {
-    for(var i = 0; i < todos.length; i++){
-      if(todos[i].id === id){
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id === id) {
         todos.splice(i, 1); // remove item
         break;
       }
     }
   }
-
-
-
 };

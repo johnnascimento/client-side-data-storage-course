@@ -1,32 +1,25 @@
-
-
-
-
-window.onload = function() {
-
+window.onload = function () {
   var username = 'alperen';
   var password = '123456';
 
-
   // Handle Button Event
-  document.getElementById('login-button').addEventListener('click', function() {
+  document.getElementById('login-button').addEventListener('click', function () {
     var formUsername = document.getElementById('formUsername').value;
     var formPassword = document.getElementById('formPassword').value;
 
-    if(username === formUsername && password === formPassword){
+    if (username === formUsername && password === formPassword) {
       createCookie('loggedIn', true);
       createCookie('loginUsername', username);
       createCookie('visits', 1);
       window.location = 'index.html'; // redirect to home page
-    }else if(formUsername === '' || formPassword === ''){
+    } else if (formUsername === '' || formPassword === '') {
       alert('This fields cannot be empty!');
-    }else{
+    } else {
       alert('Username or Password is wrong!');
     }
-
   });
 
-  function createCookie(name, value){
+  function createCookie(name, value) {
     // Key Value Pairs
     var keyValue = name + '=' + value;
 
@@ -42,8 +35,4 @@ window.onload = function() {
     // Create cookie
     document.cookie = cookieStr;
   }
-
-
-
-
 };
