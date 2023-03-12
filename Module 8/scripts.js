@@ -1,6 +1,6 @@
 window.onload = () => {
-    let dbName = 'myStore';
-    let dbVersion = 4; // INT numbers only. No decimal places
+    let dbName = 'bookStore';
+    let dbVersion = 1; // INT numbers only. No decimal places
     
     let dbRequest = indexedDB.open(dbName, dbVersion);
     console.log('dbRequest', dbRequest);
@@ -16,7 +16,7 @@ window.onload = () => {
       // db.createObjectStore('users', { autoIncrement: true}); // Means that the primary key is automatically generated incrementally
       
       
-      db.createObjectStore('users', { autoIncrement: true });
+      db.createObjectStore('users', { keyPath: 'id' });
     }
     
     dbRequest.onerror = (ev) => {
@@ -27,6 +27,16 @@ window.onload = () => {
     dbRequest.onsuccess = (ev) => {
       console.log('onSuccess');
       console.log(ev.target.result);
+      
+      let db = ev.target.result;
+      let transaction = db.transaction('users', 'readwrite');
+      console.log('trans', transaction);
+      
+      let store = transaction.objectStore('users');
+      
+      store.add({ id: 15, name: 'John L' });
+      
+      console.log('store', store);
     }
     
     dbRequest.onblocked = (ev) => {
