@@ -20,8 +20,16 @@ window.onload = () => {
 
         t.executeSql('INSERT INTO users(\'id\', \'name\', \'lastname\') VALUES(\'5\', \'John\', \'LeNasc\')', [], function (transaction, response) {
             console.log('table created', response);
+            console.log('table created', transaction);
+
+            transaction.executeSql('SELECT * FROM users', [], function (t, result) {
+                console.log('result selected', result);
+            }, function (t, err) {
+                console.log('err selected', err);
+            });
         }, function (transaction, err) {
             console.log('table not created', err);
+            console.log('table not created', transaction);
         });
     });
 };
